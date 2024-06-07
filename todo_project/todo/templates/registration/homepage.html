@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">Task Manager</h1>
+            <ul class="nav-links">
+                <li><a href="#kanban">Kanban</a></li>
+                <li><a href="#task-list">Task List</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Welcome to Task Manager</h1>
+            <p>Organize your tasks efficiently with our powerful task management tool.</p>
+            <a href="#get-started" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Kanban Section -->
+    <section id="kanban" class="kanban">
+        <div class="container">
+            <h2>Kanban Board</h2>
+            <!-- Your Kanban Board Content Goes Here -->
+        </div>
+    </section>
+
+    <!-- Task List Section -->
+    <section id="task-list" class="task-list">
+        <div class="container">
+            <h2>Task List</h2>
+            <!-- Your Task List Content Goes Here -->
+        </div>
+    </section>
+
+    <!-- Get Started Section -->
+    <section id="get-started" class="get-started">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Create an account now and start organizing your tasks!</p>
+            <a href="{% url 'signup' %}" class="btn">Sign Up</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Task Manager. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

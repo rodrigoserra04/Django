@@ -1,0 +1,139 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #007bff;
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-links li a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section Styles */
+.hero {
+    padding: 100px 0;
+    text-align: center;
+    background-color: #f8f9fa;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.hero .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.hero .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Kanban Section Styles */
+.kanban {
+    padding: 80px 0;
+    text-align: center;
+    background-color: #fff;
+}
+
+.kanban h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+/* Task List Section Styles */
+.task-list {
+    padding: 80px 0;
+    text-align: center;
+    background-color: #f8f9fa;
+}
+
+.task-list h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+/* Get Started Section Styles */
+.get-started {
+    padding: 100px 0;
+    text-align: center;
+    background-color: #007bff;
+    color: #fff;
+}
+
+.get-started h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.get-started p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.get-started .btn {
+    background-color: #fff;
+    color: #007bff;
+}
+
+.get-started .btn:hover {
+    background-color: #f8f9fa;
+}
