@@ -1,3 +1,5 @@
+{% load crispy_forms_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,14 +8,9 @@
     <title>Sign Up</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             background-color: #f8f9fa;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
         }
         .signup-container {
             background-color: #fff;
@@ -22,23 +19,32 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             width: 100%;
+            margin: auto;
+            margin-top: 150px;
+        }
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         h2 {
             color: #007bff;
             text-align: center;
         }
         form {
-            display: flex;
-            flex-direction: column;
+            width: 100%;
+            max-width: 300px; /* Define a largura máxima do formulário */
         }
         input[type="text"],
         input[type="password"] {
+            width: 100%;
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ced4da;
             border-radius: 5px;
         }
         button {
+            width: 100%;
             padding: 10px 20px;
             background-color: #007bff;
             color: #fff;
@@ -50,16 +56,34 @@
         button:hover {
             background-color: #0056b3;
         }
+        .login-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
     </style>
 </head>
 <body>
+    {% include 'navbar.html' %}
     <div class="signup-container">
         <h2>Sign Up</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Sign Up</button>
-        </form>
+        <div class="signup-form">
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        <div class="login-link">
+            Already have an account? <a href="{% url 'login' %}">Login here</a>.
+        </div>
     </div>
 </body>
 </html>

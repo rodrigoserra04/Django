@@ -33,6 +33,9 @@ def signup(request):
             return redirect('login')
     else:
         form = UserCreationForm()
+        
+    for field in form.fields.values():
+        field.help_text = None
     return render(request, 'registration/signup.html', {'form': form})
 
 def homepage(request):
