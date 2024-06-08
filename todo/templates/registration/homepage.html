@@ -9,18 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="container">
-            <h1 class="logo">Task Manager</h1>
-            <ul class="nav-links">
-                <li><a href="#kanban">Kanban</a></li>
-                <li><a href="#task-list">Task List</a></li>
-                <li><a href="{% url 'logout' %}">Logout</a></li>
-            </ul>
-        </div>
-    </nav>
+    {% include 'navbar.html' %}
 
     <!-- Hero Section -->
     <section class="hero">
@@ -35,7 +24,7 @@
     <section id="kanban" class="kanban">
         <div class="container">
             <h2>Kanban Board</h2>
-            <!-- Your Kanban Board Content Goes Here -->
+            {% include 'kanban/kanbantable.html' %}
         </div>
     </section>
 
@@ -43,7 +32,7 @@
     <section id="task-list" class="task-list">
         <div class="container">
             <h2>Task List</h2>
-            <!-- Your Task List Content Goes Here -->
+            {% include 'todo/task_listComponent.html' %}
         </div>
     </section>
 

@@ -35,6 +35,12 @@ body {
 .logo {
     font-size: 1.5rem;
     color: #fff;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
 }
 
 .nav-links {
@@ -53,6 +59,10 @@ body {
 
 .nav-links li a:hover {
     text-decoration: underline;
+}
+
+.nav-links .right-items {
+    margin-left: auto;
 }
 
 /* Hero Section Styles */

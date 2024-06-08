@@ -77,7 +77,19 @@
     </style>
 </head>
 <body>
-    {% include 'navbar.html' %}
-    {% include 'todo/task_listComponent.html' %}
+    <div class="container">
+        <h1>ToDo List</h1>
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    <span class="task-title">{{ task.title }}</span>
+                    <span class="task-status{% if task.status == 'done' %} task-status--done{% elif  task.status == 'doing' %} task-status--doing{% else %} task-status--pending{% endif %}">
+                        {{task.status}}
+                    </span>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'add_task' %}" class="add-task">Add a New Task</a>
+    </div>
 </body>
 </html>
