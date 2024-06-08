@@ -11,12 +11,16 @@
 <body>
 
     <nav class="navbar">
-        <div class="nav-container">
+        <div class="container">
             <a class="logo" href="{% url 'Home Page' %}">Task Manager</a>
             <ul class="nav-links">
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'kanban' %}">Kanban</a></li>
                 <li><a href="{% url 'task_list' %}">Task List</a></li>
+                {% else %}
+                <li><a href="#kanban">Kanban</a></li>
+                <li><a href="#task-list">Task List</a></li>
+                <li class="right-items"><a href="#get-started">Get Started</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
                 <ul class="nav-links right-items">

@@ -6,28 +6,23 @@
     <title>Add Task</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
         }
-        .container {
-            max-width: 500px;
-            margin: 20px auto;
+        .create-task-container {
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            margin: auto;
+            margin-top: 100px;
         }
         h1 {
             color: #007bff;
             text-align: center;
-        }
-        form {
-            margin-top: 20px;
-        }
-        .form-group {
-            margin-bottom: 20px;
         }
         label {
             font-weight: bold;
@@ -67,9 +62,10 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    {% include 'navbar.html' %}
+    <div class="create-task-container">
         <h1>Add a New Task</h1>
-        <form method="post">
+        <form method="POST">
             {% csrf_token %}
             <div class="form-group">
                 <label for="id_title">Title:</label>
@@ -79,6 +75,7 @@
                 <label for="id_description">Description:</label>
                 {{ form.description }}
             </div>
+            <input type="hidden" name="status" value="ToDo">
             <button type="submit">Add Task</button>
         </form>
         <a href="{% url 'task_list' %}" class="back-link">Back to List</a>

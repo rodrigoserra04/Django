@@ -5,3 +5,7 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ['title', 'description', 'status']
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['status'].initial = 'ToDo'
+        self.fields['status'].widget = forms.HiddenInput()

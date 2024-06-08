@@ -9,52 +9,19 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-olwWt8g+7Mz/9iGKsjFtM6pHBEpOA47P3Qf5cUFtEpgyKxpnX1NqEOijjtSxlMKZkPKMoq45bPd+HvO9xkzZFg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* Additional Styles for Kanban Section */
-        .kanban-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 20px;
-        }
-
-        .column {
-            flex: 1;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        .column h2 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #007bff;
-        }
-
-        .task-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .task-item {
-            background-color: #fff;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-        }
-
-        .task-item i {
-            margin-right: 10px;
-            color: #007bff;
+        .kanban-title {
+            font-size: 1.8rem;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            color: #555;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     {% include 'navbar.html' %}
-    <h1 class="hero">Kanban Board</h1>
+    <h1 class="kanban-title">Kanban Board</h1>
     {% include 'kanban/kanbantable.html' %}
 </body>
 </html>

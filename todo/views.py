@@ -18,9 +18,12 @@ def add_task(request):
         if form.is_valid():
             form.save()
             return redirect('task_list')
+        else:
+            print("Formulário inválido:", form.errors)
     else:
         form = TaskForm()
     return render(request, 'todo/add_task.html', {'form': form})
+
 
 def signup(request):
     if request.method == 'POST':

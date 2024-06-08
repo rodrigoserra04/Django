@@ -10,6 +10,18 @@
 </head>
 <body>
     {% include 'navbar.html' %}
+    <!-- <header class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Task Manager</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#kanban">Kanban</a></li>
+                    <li><a href="#task-list">Task List</a></li>
+                    <li class="right-items"><a href="#get-started">Get Started</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header> -->
 
     <!-- Hero Section -->
     <section class="hero">
@@ -24,7 +36,21 @@
     <section id="kanban" class="kanban">
         <div class="container">
             <h2>Kanban Board</h2>
-            {% include 'kanban/kanbantable.html' %}
+            <p>Visualize your tasks and manage your workflow effectively with our Kanban board.</p>
+            <div class="kanban-cards">
+                <div class="kanban-card">
+                    <h3>To Do</h3>
+                    <p>Tasks to be done</p>
+                </div>
+                <div class="kanban-card">
+                    <h3>In Progress</h3>
+                    <p>Tasks in progress</p>
+                </div>
+                <div class="kanban-card">
+                    <h3>Done</h3>
+                    <p>Completed tasks</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -32,23 +58,48 @@
     <section id="task-list" class="task-list">
         <div class="container">
             <h2>Task List</h2>
-            {% include 'todo/task_listComponent.html' %}
+            <p>Keep track of all your tasks with our comprehensive task list feature.</p>
+            <div class="task-items">
+                <div class="task-item">
+                    <h3>Task 1</h3>
+                    <p>Description of task 1</p>
+                </div>
+                <div class="task-item">
+                    <h3>Task 2</h3>
+                    <p>Description of task 2</p>
+                </div>
+                <div class="task-item">
+                    <h3>Task 3</h3>
+                    <p>Description of task 3</p>
+                </div>
+            </div>
         </div>
     </section>
+
 
     <!-- Get Started Section -->
     <section id="get-started" class="get-started">
         <div class="container">
-            <h2>Ready to Get Started?</h2>
-            <p>Create an account now and start organizing your tasks!</p>
-            <a href="{% url 'signup' %}" class="btn">Sign Up</a>
+            <div class="get-started-content">
+                <h2>Ready to Get Started?</h2>
+                <p>Create an account now and start organizing your tasks!</p>
+                <a href="{% url 'signup' %}" class="btn">Sign Up</a>
+            </div>
         </div>
     </section>
+
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Task Manager. All rights reserved.</p>
+            <div class="footer-content">
+                <p>&copy; 2024 Task Manager. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><img src="{% static 'images/icons/facebook.png' %}" alt="Facebook"></a>
+                    <a href="#"><img src="{% static 'images/icons/twitter.png' %}" alt="Twitter"></a>
+                    <a href="#"><img src="{% static 'images/icons/instagram.png' %}" alt="Instagram"></a>
+                </div>
+            </div>
         </div>
     </footer>
 
