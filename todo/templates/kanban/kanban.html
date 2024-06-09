@@ -21,7 +21,10 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-    <h1 class="kanban-title">Kanban Board</h1>
-    {% include 'kanban/kanbantable.html' %}
+    <div class="main-content">
+        <h1 class="kanban-title">Kanban Board</h1>
+        {% include 'kanban/kanbantable.html' %}
+    </div>
+    {% include 'footer.html' %}
 </body>
 </html>

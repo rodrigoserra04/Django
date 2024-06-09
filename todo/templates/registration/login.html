@@ -20,7 +20,8 @@
             max-width: 400px;
             width: 100%;
             margin: auto;
-            margin-top: 150px;
+            margin-top: 2.5%;
+            margin-bottom: 2.5%;
         }
         .login-form {
             display: flex;
@@ -72,19 +73,21 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-    <div class="login-container">
-        <h1>Login</h1>
-        <div class="login-form">
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Login</button>
-            </form>
+    <div class="main-content">
+        <div class="login-container">
+            <h1>Login</h1>
+            <div class="login-form">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+            <div class="signup-link">
+                Don't have an account? <a href="{% url 'signup' %}">Sign Up here</a>.
+            </div>
         </div>
-        <div class="signup-link">
-            Don't have an account? <a href="{% url 'signup' %}">Sign Up here</a>.
-        </div>
-
     </div>
+    {% include 'footer.html' %}
 </body>
 </html>

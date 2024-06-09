@@ -1,9 +1,12 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Task</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <style>
         body {
             background-color: #f8f9fa;
@@ -63,22 +66,25 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-    <div class="create-task-container">
-        <h1>Add a New Task</h1>
-        <form method="POST">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="id_title">Title:</label>
-                {{ form.title }}
-            </div>
-            <div class="form-group">
-                <label for="id_description">Description:</label>
-                {{ form.description }}
-            </div>
-            <input type="hidden" name="status" value="ToDo">
-            <button type="submit">Add Task</button>
-        </form>
-        <a href="{% url 'task_list' %}" class="back-link">Back to List</a>
+    <div class="main-content">
+        <div class="create-task-container">
+            <h1>Add a New Task</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_title">Title:</label>
+                    {{ form.title }}
+                </div>
+                <div class="form-group">
+                    <label for="id_description">Description:</label>
+                    {{ form.description }}
+                </div>
+                <input type="hidden" name="status" value="ToDo">
+                <button type="submit">Add Task</button>
+            </form>
+            <a href="{% url 'task_list' %}" class="back-link">Back to List</a>
+        </div>
     </div>
+    {% include 'footer.html' %}
 </body>
 </html>

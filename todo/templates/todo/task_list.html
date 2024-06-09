@@ -1,24 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo List</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
         h1 {
             color: #007bff;
             text-align: center;
@@ -78,6 +66,9 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-    {% include 'todo/task_listComponent.html' %}
+    <div class="main-content">
+        {% include 'todo/task_listComponent.html' %}
+    </div>
+    {% include 'footer.html' %}
 </body>
 </html>

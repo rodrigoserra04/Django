@@ -7,11 +7,14 @@ from django.urls import reverse_lazy
 from django.contrib.auth import login
 from django.http import JsonResponse
 import json
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def task_list(request):
     tasks = Task.objects.all()
     return render(request, 'todo/task_list.html', {'tasks': tasks})
 
+@login_required
 def add_task(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
@@ -41,6 +44,7 @@ def signup(request):
 def homepage(request):
     return render(request, 'registration/homepage.html')
 
+@login_required
 def kanban(request):
     tasks = Task.objects.all()
     
@@ -55,6 +59,7 @@ def kanban(request):
     }
     return render(request, 'kanban/kanban.html', context)
 
+@login_required
 def update_task_status(request):
     if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
         data = json.loads(request.body)

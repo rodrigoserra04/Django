@@ -23,19 +23,15 @@
                 <li class="right-items"><a href="#get-started">Get Started</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
-                <ul class="nav-links right-items">
                     <li class="logout">
                         <form id="logout-form" action="{% url 'logout' %}" method="post">
                             {% csrf_token %}
                             <a href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
                         </form>
                     </li>
-                </ul>
-                {% else %}
+                    {% else %}
                     {% if request.path != '/login/' %}
-                        <ul class="nav-links right-items">
-                            <li class="logout"><a href="{% url 'login' %}">Login</a></li>
-                        </ul>
+                        <li class="logout"><a href="{% url 'login' %}">Login</a></li>
                     {% endif %}
                 {% endif %}
             </ul>
