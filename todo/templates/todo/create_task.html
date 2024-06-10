@@ -30,12 +30,16 @@
         label {
             font-weight: bold;
         }
-        input[type="text"] {
+        input[type="text"],
+        textarea,
+        select,
+        input[type="date"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ced4da;
             border-radius: 5px;
             box-sizing: border-box;
+            margin-bottom: 10px;
         }
         button[type="submit"] {
             display: block;
@@ -78,6 +82,14 @@
                 <div class="form-group">
                     <label for="id_description">Description:</label>
                     {{ form.description }}
+                </div>
+                <div class="form-group">
+                    <label for="id_priority">Priority:</label>
+                    {{ form.priority }}
+                </div>
+                <div class="form-group">
+                    <label for="id_due_date">Due Date:</label>
+                    {{ form.due_date }}
                 </div>
                 <input type="hidden" name="status" value="ToDo">
                 <button type="submit">Add Task</button>

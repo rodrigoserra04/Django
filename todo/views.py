@@ -8,6 +8,7 @@ from django.contrib.auth import login
 from django.http import JsonResponse
 import json
 from django.contrib.auth.decorators import login_required
+from .assistant.utils import get_ai_suggestions
 
 @login_required
 def task_list(request):
@@ -15,17 +16,28 @@ def task_list(request):
     return render(request, 'todo/task_list.html', {'tasks': tasks})
 
 @login_required
-def add_task(request):
+def create_task(request):
+    print(request.GET)
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
-            form.save()
+            task = form.save(commit=False)
+            task.user = request.user
+            print("PROMPT: ", request.POST)
+            prompt = request.POST.get('description', '')
+            suggestions = get_ai_suggestions(prompt)
+            task.ai_description = suggestions
+            task.save()
             return redirect('task_list')
         else:
             print("Formulário inválido:", form.errors)
     else:
         form = TaskForm()
-    return render(request, 'todo/add_task.html', {'form': form})
+
+    # if 'ai_suggest' in request.GET:
+        # return render(request, 'todo/create_task.html', {'form': form, 'suggestions': suggestions})
+
+    return render(request, 'todo/create_task.html', {'form': form})
 
 
 def signup(request):
