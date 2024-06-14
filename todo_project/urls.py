@@ -9,5 +9,5 @@ urlpatterns = [
     path('', include('todo.urls')),
     path('signup/', views.signup, name='signup'),
     path('login/', LoginView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout'),  # 
+    path('logout/', LogoutView.as_view(), name='logout'),
 ]

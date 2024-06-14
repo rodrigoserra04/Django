@@ -1,13 +1,15 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo List</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <style>
         .task-container {
-            max-width: 800px;
-            margin: 20px auto;
+            max-width: auto;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -28,11 +30,20 @@
             justify-content: space-between;
         }
         .task-title {
-            flex: 1;
+            flex: 3;
         }
         .task-status {
+            flex: 2;
+            text-align: center;
+        }
+        .task-priority {
+            flex: 2;
+            text-align: center;
+        }
+        .task-actions {
             flex: 1;
             text-align: center;
+            font-weight: bold;
         }
         .add-task {
             display: block;
@@ -48,39 +59,75 @@
         .add-task:hover {
             background-color: #0056b3;
         }
-        /* Estilos para o botão de login */
-        .btn {
-            display: block;
-            text-align: center;
+        .pagination {
+            display: flex;
+            justify-content: center;
             margin-top: 20px;
-            text-decoration: none;
-            color: #fff;
-            background-color: #007bff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
         }
-        .btn:hover {
-            background-color: #0056b3;
+        .pagination a, .pagination span {
+            margin: 0 5px;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #007bff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .pagination .current {
+            background-color: #007bff;
+            color: white;
+            border: 1px solid #007bff;
+        }
+        .pagination .disabled {
+            color: #ccc;
+            pointer-events: none;
+            border: 1px solid #ddd;
         }
     </style>
 </head>
 <body>
     <div class="main-content">
         <div class="task-container">
-            <h1>ToDo List</h1>
+            <h1>Task List</h1>
+            <a href="{% url 'create_task' %}" class="add-task">Add a New Task</a>
             <ul>
-                {% for task in tasks %}
+                <li>
+                    <span class="task-title">TITLE</span>
+                    <span class="task-status">
+                        STATUS
+                    </span>
+                    <span class="task-priority">
+                        PRIORITY
+                    </span>
+                    <span class="task-actions">Actions</span>
+                </li>
+                {% for task in page_obj %}
                     <li>
                         <span class="task-title">{{ task.title }}</span>
-                        <span class="task-status{% if task.status == 'Done' %} task-status--done{% elif  task.status == 'Doing' %} task-status--doing{% else %} task-status--pending{% endif %}">
-                            {{task.status}}
+                        <span class="task-status{% if task.status == 'Done' %} task-status--done{% elif task.status == 'Doing' %} task-status--doing{% else %} task-status--pending{% endif %}">
+                            {{ task.status }}
                         </span>
-                        <a href="{% url 'task_detail' task.id %}" class="btn-details">Ver Detalhes</a>
+                        <span class="task-priority {% if task.priority == 'Low' %}task-priority--low{% elif task.priority == 'Medium' %}task-priority--medium{% else %}task-priority--high{% endif %}">
+                            {{ task.priority }}
+                        </span>
+                        <a href="{% url 'task_detail' task.id %}" class="task-actions btn-details">View Details</a>
                     </li>
                 {% endfor %}
             </ul>
-            <a href="{% url 'create_task' %}" class="add-task">Add a New Task</a>
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% else %}
+                    <span class="disabled">Previous</span>
+                {% endif %}
+
+                <span class="current">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                {% else %}
+                    <span class="disabled">Next</span>
+                {% endif %}
+            </div>
         </div>
     </div>
 </body>

@@ -281,7 +281,6 @@ body {
     opacity: 0.7;
 }
 
-/* Estilo do Botão "Ver Detalhes" */
 .btn-details {
     display: inline-block;
     padding: 10px 20px;
@@ -297,6 +296,10 @@ body {
     background-color: #0056b3;
 }
 
+.task-title {
+    font-weight: bold;
+}
+
 .task-priority {
     font-weight: bold;
 }
@@ -306,11 +309,11 @@ body {
 }
 
 .task-priority--medium {
-    color: #ffe70e;
+    color: #ffab0e;
 }
 
 .task-priority--low {
-    color: #fff;
+    color: #ffe600;
 }
 
 .task-status {

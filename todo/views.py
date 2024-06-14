@@ -1,19 +1,25 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import Task
-from .forms import TaskForm
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from django.contrib.auth import login
 from django.http import JsonResponse
-import json
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+import json, os
+from .models import Task
+from .forms import TaskForm
 from .assistant.utils import get_ai_suggestions
 
 @login_required
 def task_list(request):
-    tasks = Task.objects.all()
-    return render(request, 'todo/task_list.html', {'tasks': tasks})
+    tasks = Task.objects.order_by('-created_at')
+    paginator = Paginator(tasks, 10)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'todo/task_list.html', {'page_obj': page_obj})
 
 def task_detail(request, task_id):
     task = get_object_or_404(Task, id=task_id)
@@ -21,7 +27,6 @@ def task_detail(request, task_id):
 
 @login_required
 def create_task(request):
-    print(request.GET)
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
@@ -29,18 +34,15 @@ def create_task(request):
             task.user = request.user
             print("PROMPT: ", request.POST)
             prompt = request.POST.get('description', '')
-            suggestions = get_ai_suggestions(prompt)
-            task.ai_description = suggestions
+            if (os.getenv('OPEN_AI_ACTIVATED') == True):
+                suggestions = get_ai_suggestions(prompt)
+                task.ai_description = suggestions
             task.save()
             return redirect('task_list')
         else:
-            print("Formulário inválido:", form.errors)
+            print("Invalid Form:", form.errors)
     else:
         form = TaskForm()
-
-    # if 'ai_suggest' in request.GET:
-        # return render(request, 'todo/create_task.html', {'form': form, 'suggestions': suggestions})
-
     return render(request, 'todo/create_task.html', {'form': form})
 
 
@@ -85,23 +87,18 @@ def update_task_status(request):
         print(task_id)
         
         try:
-            # Obtenha a tarefa pelo ID
             task = Task.objects.get(pk=task_id)
-            # Atualize o status da tarefa
             task.status = new_status
             task.save()
 
-            # Após a atualização, busque todas as tarefas atualizadas
             todo_tasks = Task.objects.filter(status='ToDo')
             doing_tasks = Task.objects.filter(status='Doing')
             done_tasks = Task.objects.filter(status='Done')
 
-            # Converta as consultas em dicionários
             todo_tasks_data = [{'id': task.id, 'title': task.title} for task in todo_tasks]
             doing_tasks_data = [{'id': task.id, 'title': task.title} for task in doing_tasks]
             done_tasks_data = [{'id': task.id, 'title': task.title} for task in done_tasks]
 
-            # Retorne os dados atualizados em formato JSON
             return JsonResponse({
                 'todo_tasks': todo_tasks_data,
                 'doing_tasks': doing_tasks_data,
