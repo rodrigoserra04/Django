@@ -10,5 +10,5 @@ class TaskForm(forms.ModelForm):
         }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['status'].initial = 'ToDo'
+        self.fields['status'].initial = 'Pending'
         self.fields['status'].widget = forms.HiddenInput()

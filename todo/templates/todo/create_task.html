@@ -91,7 +91,7 @@
                     <label for="id_due_date">Due Date:</label>
                     {{ form.due_date }}
                 </div>
-                <input type="hidden" name="status" value="ToDo">
+                <input type="hidden" name="status" value="Pending">
                 <button type="submit">Add Task</button>
             </form>
             <a href="{% url 'task_list' %}" class="back-link">Back to List</a>

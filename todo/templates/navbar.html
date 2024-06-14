@@ -12,7 +12,7 @@
 
     <nav class="navbar">
         <div class="container">
-            <a class="logo" href="{% url 'Home Page' %}">Task Manager</a>
+            <a class="{% if request.path == '/' %}logo{% else %}logo2{% endif %}" href="{% url 'Home Page' %}">Task Manager</a>
             <ul class="nav-links">
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'kanban' %}">Kanban</a></li>

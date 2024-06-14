@@ -4,7 +4,7 @@ from django.utils import timezone
 
 class Task(models.Model):
     STATUS_CHOICES = (
-        ('ToDo', 'To Do'),
+        ('Pending', 'Pending'),
         ('Doing', 'Doing'),
         ('Done', 'Done'),
     )
@@ -18,8 +18,8 @@ class Task(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     ai_description = models.TextField(blank=True, null=True)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='ToDo')
-    priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='Medium')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Pending')
+    priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='Low')
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     due_date = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)

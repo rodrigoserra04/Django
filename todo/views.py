@@ -45,7 +45,6 @@ def create_task(request):
         form = TaskForm()
     return render(request, 'todo/create_task.html', {'form': form})
 
-
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -66,7 +65,7 @@ def homepage(request):
 def kanban(request):
     tasks = Task.objects.all()
     
-    todo_tasks = tasks.filter(status='ToDo')
+    todo_tasks = tasks.filter(status='Pending')
     doing_tasks = tasks.filter(status='Doing')
     done_tasks = tasks.filter(status='Done')
 
@@ -91,7 +90,7 @@ def update_task_status(request):
             task.status = new_status
             task.save()
 
-            todo_tasks = Task.objects.filter(status='ToDo')
+            todo_tasks = Task.objects.filter(status='Pending')
             doing_tasks = Task.objects.filter(status='Doing')
             done_tasks = Task.objects.filter(status='Done')
 

@@ -45,6 +45,17 @@ body {
     width: fit-content;
 }
 
+.logo2 {
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    margin: 0;
+    width: fit-content;
+}
+
 .nav-links {
     list-style-type: none;
     display: flex;

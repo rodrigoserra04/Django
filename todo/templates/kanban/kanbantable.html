@@ -53,7 +53,7 @@
 </head>
 <body>
     <div class="kanban-container container">
-        <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" data-status="ToDo">
+        <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" data-status="Pending">
             <h2>To Do</h2>
             <ul class="task-list" id="todo-list" ondragover="allowDrop(event)" ondrop="drop(event)">
                 {% for task in todo_tasks %}
