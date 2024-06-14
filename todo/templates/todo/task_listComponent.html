@@ -31,13 +31,8 @@
             flex: 1;
         }
         .task-status {
-            color: #28a745;
-        }
-        .task-status--pending {
-            color: #dc3545;
-        }
-        .task-status--doing {
-            color: #ffe70e;
+            flex: 1;
+            text-align: center;
         }
         .add-task {
             display: block;
@@ -81,6 +76,7 @@
                         <span class="task-status{% if task.status == 'Done' %} task-status--done{% elif  task.status == 'Doing' %} task-status--doing{% else %} task-status--pending{% endif %}">
                             {{task.status}}
                         </span>
+                        <a href="{% url 'task_detail' task.id %}" class="btn-details">Ver Detalhes</a>
                     </li>
                 {% endfor %}
             </ul>
